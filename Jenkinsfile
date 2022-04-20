@@ -10,6 +10,9 @@ pipeline {
                     docker build -t nginx-server:v2 .'''
             }
         }
+        stage('Manual approval') {
+            input "Deploy to prod?"
+        }
         stage('Stop_older_instance') { 
             steps {
                 sh '''docker stop jenkins-assignment2
