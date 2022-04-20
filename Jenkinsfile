@@ -3,15 +3,15 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                cd "C:/ProgramData/Jenkins/.jenkins/workspace/JenkinsAssignment1.1/public"
+                cd public
                 docker build -t nginx-server:v1 .
-                docker stop jenkins-assignment1 
             }
         }
         stage('Stop_older_instance') { 
             steps {
-                docker stop jenkins-assignment1
-                sh docker container ls -a | grep jenkins-assignment1 | cut -c -12 | docker container rm  
+                docker stop jenkins-assignment1 
+                sudo docker container ls -a | grep jenkins-assignment1 | cut -c -12 > ~/docker_jenkins_no.txt
+                cat ~/docker_jenkins_no.txt | xargs sudo docker container rm 
             }
         }
         stage('Deploy') { 
