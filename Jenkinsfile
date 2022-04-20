@@ -15,7 +15,8 @@ pipeline {
             steps {
                 sh '''docker stop jenkins-assignment2-test
                     sudo docker container ls -a | grep jenkins-assignment2-test | cut -c -12 > ~/docker_jenkins_no_pipeline_test.txt
-                    cat ~/docker_jenkins_no_pipeline_test.txt | xargs sudo docker container rm'''
+                    cat ~/docker_jenkins_no_pipeline_test.txt | xargs sudo docker container rm
+                    exit'''
             }
         }
         stage('Deploy to test') { 
