@@ -25,7 +25,7 @@ pipeline {
         }
         stage('Smoke test') { 
             steps {
-                sh 'curl "http://63.35.226.143:8084/jenkinsassignment.html" | grep $BUILD_ID'       
+                sh 'curl localhost:8084/jenkinsassignment.html | grep $BUILD_ID'       
             }
         }
         stage('Manual approval') {
