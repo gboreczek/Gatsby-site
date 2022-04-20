@@ -23,6 +23,13 @@ pipeline {
                 sh 'docker run --name jenkins-assignment2-test -d -p 8083:80 nginx-server:v2'
             }
         }
+        stage('Smoke test') { 
+            steps {
+                script{
+                    sh 'curl http://54.75.34.136:8082/jenkinsassignment.html | grep <p>$BUILD_ID</p>'
+                }                
+            }
+        }
         stage('Manual approval') {
             agent none
             steps {
