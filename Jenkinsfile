@@ -5,7 +5,9 @@ pipeline {
             steps {
                 sh '''
                     cd public
+                    echo '<p>' >> jenkinsassignment.html
                     echo $BUILD_ID >> jenkinsassignment.html
+                    echo '</p>' >> jenkinsassignment.html
                     docker build -t nginx-server:v2 .'''
             }
         }
