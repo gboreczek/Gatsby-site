@@ -11,7 +11,10 @@ pipeline {
             }
         }
         stage('Manual approval') {
-            input "Deploy to prod?"
+            agent none
+            steps {
+                input "Deploy to prod?"
+            }
         }
         stage('Stop_older_instance') { 
             steps {
