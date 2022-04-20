@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                cd C:/ProgramData/Jenkins/.jenkins/workspace/JenkinsAssignment1.1/public
+                cd "C:/ProgramData/Jenkins/.jenkins/workspace/JenkinsAssignment1.1/public"
                 docker build -t nginx-server:v1 .
                 docker stop jenkins-assignment1 
             }
