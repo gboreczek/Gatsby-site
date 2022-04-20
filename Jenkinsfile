@@ -12,7 +12,7 @@ pipeline {
         }
         stage('Stop_older_instance') { 
             steps {
-                sh '''docker stop jenkins-assignment2'
+                sh '''docker stop jenkins-assignment2
                     sudo docker container ls -a | grep jenkins-assignment2 | cut -c -12 > ~/docker_jenkins_no_pipeline.txt
                     cat ~/docker_jenkins_no_pipeline.txt | xargs sudo docker container rm'''
             }
