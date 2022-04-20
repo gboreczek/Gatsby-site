@@ -5,9 +5,9 @@ pipeline {
             steps {
                 sh '''pwd
                     cd public
-                    pwd'''
-                sh 'ls -la | grep Dock'
-                sh 'docker build -t nginx-server:v2 .'
+                    pwd
+                    ls -la | grep Dock
+                    docker build -t nginx-server:v2 .'''
             }
         }
         stage('Stop_older_instance') { 
