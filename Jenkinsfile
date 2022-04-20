@@ -11,20 +11,32 @@ pipeline {
                     docker build -t nginx-server:v2 .'''
             }
         }
+        stage('Stop previous test instance') { 
+            steps {
+                sh '''docker stop jenkins-assignment2-test
+                    sudo docker container ls -a | grep jenkins-assignment2-test | cut -c -12 > ~/docker_jenkins_no_pipeline_test.txt
+                    cat ~/docker_jenkins_no_pipeline_test.txt | xargs sudo docker container rm'''
+            }
+        }
+        stage('Deploy to test') { 
+            steps {
+                sh 'docker run --name jenkins-assignment2-test -d -p 8083:80 nginx-server:v2'
+            }
+        }
         stage('Manual approval') {
             agent none
             steps {
                 input "Deploy to prod?"
             }
         }
-        stage('Stop_older_instance') { 
+        stage('Stop previous prod instance') { 
             steps {
                 sh '''docker stop jenkins-assignment2
                     sudo docker container ls -a | grep jenkins-assignment2 | cut -c -12 > ~/docker_jenkins_no_pipeline.txt
                     cat ~/docker_jenkins_no_pipeline.txt | xargs sudo docker container rm'''
             }
         }
-        stage('Deploy') { 
+        stage('Deploy to prod') { 
             steps {
                 sh 'docker run --name jenkins-assignment2 -d -p 8082:80 nginx-server:v2'
             }
