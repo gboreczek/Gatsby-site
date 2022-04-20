@@ -38,8 +38,8 @@ pipeline {
             steps {
                 sh '''docker stop jenkins-assignment2
                     sudo docker container ls -a | grep jenkins-assignment2 | cut -c -12 > ~/docker_jenkins_no_pipeline.txt
-                    cat ~/docker_jenkins_no_pipeline.txt | xargs sudo docker container rm
-                    sleep 1'''
+                    sudo su
+                    cat ~/docker_jenkins_no_pipeline.txt | xargs sudo docker container rm'''
             }
         }
         stage('Deploy to prod') { 
