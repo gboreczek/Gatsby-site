@@ -1,6 +1,6 @@
 pipeline {
     agent any 
-    stages {
+    stages {        
         stage('Build') { 
             steps {
                 sh '''
@@ -26,7 +26,7 @@ pipeline {
         stage('Smoke test') { 
             steps {
                 script{
-                    sh 'curl http://54.75.34.136:8082/jenkinsassignment.html | grep <p>$BUILD_ID</p>'
+                    sh 'curl http://63.35.226.143:8082/jenkinsassignment.html | grep <p>$BUILD_ID</p>'
                 }                
             }
         }
