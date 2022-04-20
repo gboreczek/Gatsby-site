@@ -3,10 +3,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh '''pwd
+                sh '''
                     cd public
-                    pwd
-                    ls -la | grep Dock
+                    echo $BUILD_ID >> jenkinsassignment.html
                     docker build -t nginx-server:v2 .'''
             }
         }
