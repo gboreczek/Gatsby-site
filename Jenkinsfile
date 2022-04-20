@@ -20,13 +20,13 @@ pipeline {
         }
         stage('Deploy to test') { 
             steps {
-                sh 'docker run --name jenkins-assignment2-test -d -p 8083:80 nginx-server:v2'
+                sh 'docker run --name jenkins-assignment2-test -d -p 8084:80 nginx-server:v2'
             }
         }
         stage('Smoke test') { 
             steps {
                 script{
-                    sh 'curl http://63.35.226.143:8082/jenkinsassignment.html | grep <p>$BUILD_ID</p>'
+                    sh 'curl http://63.35.226.143:8084/jenkinsassignment.html | grep <p>$BUILD_ID</p>'
                 }                
             }
         }
