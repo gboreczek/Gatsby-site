@@ -26,7 +26,7 @@ pipeline {
         stage('Smoke test') { 
             steps {
                 script{
-                    sh 'curl http://63.35.226.143:8084/jenkinsassignment.html | grep $BUILD_ID'
+                    sh 'curl "http://63.35.226.143:8084/jenkinsassignment.html" | tac | tac | grep $BUILD_ID'
                 }                
             }
         }
