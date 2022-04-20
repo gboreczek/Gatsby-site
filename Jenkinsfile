@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                pwd
+                'pwd'
                 sh 'cd public'
                 sh 'docker build -t nginx-server:v2 .'
             }
