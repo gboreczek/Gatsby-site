@@ -3,9 +3,9 @@ pipeline {
     stages {
         stage('Build') { 
             steps {
-                sh 'pwd'
-                sh 'cd public'
-                sh 'pwd'
+                sh '''pwd
+                    cd public
+                    pwd'''
                 sh 'ls -la | grep Dock'
                 sh 'docker build -t nginx-server:v2 .'
             }
